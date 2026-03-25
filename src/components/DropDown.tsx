@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import { Text } from 'react-native-paper';
+// import { Text } from 'react-native-paper';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -23,7 +23,7 @@ export default function DropDown({
   value,
   setValue,
   list,
-  label,
+  // label,
   placeholder,
   icon,
 }: Props) {
@@ -33,7 +33,7 @@ export default function DropDown({
     <View style={{ marginVertical: 10 }}>
       
       {/* Label */}
-      {label && <Text style={{ marginBottom: 5 }}>{label}</Text>}
+      {/* {label && <Text style={{ marginBottom: 5 }}>{label}</Text>} */}
 
       {/* Container with icon */}
       <View

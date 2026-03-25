@@ -15,16 +15,18 @@ const Header = ({ navigation, route, options, back }: Props) => {
     <SafeAreaView style={{ backgroundColor: '#1f1f1f' }}>
       <View style={styles.container}>
 
-        {/* LEFT */}
-        {back ? (
-          <TouchableOpacity onPress={navigation.goBack}>
-            <Ionicons name="arrow-back" size={24} color="#fff" />
-          </TouchableOpacity>
+       {isHome ? (
+            <TouchableOpacity>
+              <Ionicons name="menu" size={24} color="#fff" />
+           </TouchableOpacity>
+        ) : back ? (
+           <TouchableOpacity onPress={() => navigation.goBack()}>
+            console.log(navigation.canGoBack());
+           <Ionicons name="arrow-back" size={24} color="#fff" />
+           </TouchableOpacity>
         ) : (
-          <TouchableOpacity>
-            <Ionicons name="menu" size={24} color="#fff" />
-          </TouchableOpacity>
-        )}
+  <View style={{ width: 24 }} />
+)}
 
         {/* CENTER */}
         <Text style={styles.title}>{title}</Text>
@@ -33,12 +35,12 @@ const Header = ({ navigation, route, options, back }: Props) => {
         {isHome ? (
           <View style={styles.rightContainer}>
             <Image
-              source={{ uri: 'https://i.pravatar.cc/100' }}
+              source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_cW-MmCcwYw3OVneVktbkPlnJRqQv6vcp6oPNVfa5cPdor4V6963oO4MFyRJF3XZj24oXl3brej1MFBs5I8NT4csZvfjjnZEgBMgraAsbZQ&s=10' }}
               style={styles.avatar}
             />
           </View>
         ) : (
-          <View style={{ width: 36 }} /> // keeps balance when no avatar
+          <View style={{ width: 36 }} />
         )}
 
       </View>
@@ -50,10 +52,10 @@ export default Header;
 
 const styles = StyleSheet.create({
   container: {
-    height: 60, // cleaner height
+    height: 60, 
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between', // 🔥 important
+    justifyContent: 'space-between', 
     paddingHorizontal: 16,
     position: 'relative',
   },
@@ -72,12 +74,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    minWidth: 40, // prevents collapse
+    minWidth: 40, 
   },
 
   avatar: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
+    width: 50,
+    height: 50,
+    borderRadius: 25,
   },
 });

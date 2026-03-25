@@ -65,7 +65,7 @@ export default function SignupScreen({ navigation }: Props) {
         mobile,
         isEligible,
       });
-      navigation.replace('Login');
+      navigation.navigate('Login');
     }, 1500);
   };
 
@@ -74,13 +74,13 @@ export default function SignupScreen({ navigation }: Props) {
       <Text variant="titleLarge" style={{fontWeight:'bold',color:'#de0d0d',textAlign:'center',paddingBottom:20}}>Sign Up</Text>
 
       {/* Name */}
-      <Label text="Name" />
+      {/* <Label text="Name" /> */}
       <TextInputField
-        // label='Name'
+        label='Name'
         value={name}
         onChangeText={setName}
         placeholder="Enter name"
-        icon="account-outline"
+        icon="account"
       />
 
       {/* DOB */}
@@ -110,7 +110,7 @@ export default function SignupScreen({ navigation }: Props) {
         onChangeText={setMobile}
         keyboardType="number-pad"
         placeholder="Enter mobile number"
-        left={<TextInput.Icon icon="phone-outline" />}
+        left={<TextInput.Icon icon="phone" />}
         style={{
           flexDirection: 'row',
           alignItems: 'center',

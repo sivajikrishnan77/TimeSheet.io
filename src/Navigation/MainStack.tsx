@@ -24,6 +24,7 @@ export default function MainStack() {
       <Stack.Screen name="Login" component={LoginScreen} options={{title:'TimeSheet',header:(props)=><Header {...props} />}}/>
       <Stack.Screen name="Signup" component={SignupScreen} options={{title:'TimeSheet',header:(props)=><Header {...props} />}}/>
       <Stack.Screen name="BottomTab" component={BottomTab} options={{title:'TimeSheet',header:(props)=><Header {...props} />}}/>
+      
     </Stack.Navigator>
   );
 }

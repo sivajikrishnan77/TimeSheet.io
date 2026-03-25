@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Alert } from 'react-native';
-import { TextInput, Text } from 'react-native-paper';
+import { TextInput, Text} from 'react-native-paper';
 // import Ionicons from 'react-native-vector-icons/Ionicons';
 import Label from '../components/Label';
 import TextInputField from '../components/TextInput';
@@ -100,6 +100,7 @@ export default function SignupScreen({ navigation }: Props) {
           { label: 'Single', value: 'single' },
           { label: 'Married', value: 'married' },
         ]}
+        icon="heart"
       />
 
       {/* Mobile */}

@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import { TextInput, Button, Text } from 'react-native-paper';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { Alert } from 'react-native';
+// import { Alert } from 'react-native';
+import { loginApi } from '../api/authApi';
 
 type RootStackParamList = {
   Login: undefined;
@@ -19,12 +20,26 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
+const handleLogin = async () => {
   if (!username || !password) {
-    Alert.alert('Warning', 'Fill all required fields');
+    console.log("Enter username and password");
     return;
   }
-  navigation.replace('BottomTab');
+
+  try {
+    const response = await loginApi(username, password);
+
+    console.log("TOKEN:", response.accessToken);
+
+     const user = await getProfile(token);
+
+    console.log("USER PROFILE:", user);
+
+    navigation.navigate("BottomTab");
+
+  } catch (error: any) {
+    console.log("Login error:", error.response?.data?.message||error.message);
+  }
 };
 
   return (
@@ -45,9 +60,15 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
         style={{ marginVertical: 10 }}
         left={<TextInput.Icon icon="lock" />}
       />
-      <Button mode="contained" onPress={() => {handleLogin()}}style={{backgroundColor:'#18c9d5'}}>
-        Login
-      </Button>
+     <Button
+  mode="contained"
+  onPress={() => {
+    console.log("Login button pressed");
+    handleLogin();
+  }}
+>
+  Login
+</Button>
       <Button onPress={() => navigation.navigate('Signup')}>
         Don’t have an account? Sign Up
       </Button>

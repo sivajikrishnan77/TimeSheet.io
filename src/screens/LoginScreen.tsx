@@ -4,11 +4,13 @@ import { View } from 'react-native';
 import { TextInput, Button, Text } from 'react-native-paper';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 // import { Alert } from 'react-native';
+import  AsyncStorage  from '@react-native-async-storage/async-storage';
 import { loginApi } from '../api/authApi';
 
 type RootStackParamList = {
   Login: undefined;
   Signup: undefined;
+  Product: undefined;
   BottomTab: undefined;
 };
 
@@ -29,16 +31,13 @@ const handleLogin = async () => {
   try {
     const response = await loginApi(username, password);
 
-    console.log("TOKEN:", response.accessToken);
+  await AsyncStorage.setItem("accessToken", response.accessToken);
+  await AsyncStorage.setItem("refreshToken", response.refreshToken);
 
-     const user = await getProfile(token);
+    navigation.navigate("Product");
 
-    console.log("USER PROFILE:", user);
-
-    navigation.navigate("BottomTab");
-
-  } catch (error: any) {
-    console.log("Login error:", error.response?.data?.message||error.message);
+  } catch (error) {
+    console.log(error);
   }
 };
 
